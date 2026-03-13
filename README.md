@@ -1,181 +1,152 @@
-#### **Quite-Bite Express - Crisis Impact \& Recovery Analysis**
+# QuickBite Express — Crisis Impact & Recovery Analysis
 
-##### 📌 Project Overview
+## 📌 Executive Summary
 
-In June 2025, Quick-Bite Express experienced a major operational and reputational crisis driven by safety backlash and a delivery infrastructure outage. This resulted in a sharp desline in customer activity and revenue.
+In June 2025, QuickBite Express experienced a severe operational and reputational crisis caused by a food safety backlash and a delivery infrastructure outage.
 
-The objective of this project was to:
+The result:
+- Sharp customer contraction  
+- Revenue collapse  
+- Delivery delays  
+- Rating deterioration  
 
-* Diagnose the root cause of the revenue collapse
-* Analyze behavioral changes across pre-crisis, crisis, and recovery phases
-* Evaluate operational impact
-* Provide data-driven recovery recommendations
+This project diagnoses the root cause of the revenue decline and proposes a data-driven recovery strategy using SQL, Python, and Tableau.
 
-This project simulates a real-world business case using SQL, Python, and Tableau.
+---
 
+## 🎯 Business Objective
 
+This analysis focused on:
 
-##### 🗂 Data Model
+- Identifying the primary driver of revenue collapse  
+- Measuring behavioral changes across Pre-Crisis, Crisis, and Recovery phases  
+- Evaluating operational breakdown impact  
+- Designing strategic recovery recommendations  
 
-The dataset follows a star schema structure:
+---
 
+## 🗂 Data Model & Structure
 
+The dataset follows a **star schema architecture**.
 
-###### Fact Tables
+### Fact Tables
+- `fact_orders` — 1 row per order  
+- `fact_order_items` — 1 row per item within an order  
+- `fact_delivery_performance` — 1 row per delivery record  
+- `fact_ratings` — 1 row per order rating  
 
+### Dimension Tables
+- `dim_customer`  
+- `dim_restaurant`  
+- `dim_menu_item`  
+- `dim_date` (created during transformation)  
 
+All analysis was conducted at the correct grain level to prevent double-counting and aggregation bias.
 
-* fact\_orders – 1 row per order
-* fact\_order\_items – 1 row per order item
-* fact\_delivery\_performance – 1 row per order delivery record
-* fact\_ratings – 1 row per order rating
+---
 
+## 🧠 Analytical Framework
 
+### Phase Segmentation
+- **Pre-Crisis:** Before June 2025  
+- **Crisis:** June 2025  
+- **Post-Crisis:** July 2025 onward  
 
-###### Dimension Tables
+### Revenue Decomposition
 
-
-
-* dim\_customer
-* dim\_restaurant
-* dim\_menu\_item
-* dim\_date (created during transformation)
-
-
-
-The analysis was conducted at the appropriate grain level to avoid double-counting.
-
-
-
-##### 🧠 Analytical Framework
-
-
-
-###### Phase Definition
-
-
-
-* Pre-Crisis: Before June 2025
-* Crisis: June 2025
-* Post-Crisis: July 2025 onward
-
-
-
-###### Revenue Decomposition
-
-
-
-Revenue was decomposed into three drivers:
-
+Revenue was broken into structural drivers:
 Revenue = Active Customers × Order Frequency × Average Order Value (AOV)
 
 
+This allowed isolation of the true driver of decline rather than relying on surface-level revenue trends.
 
-This allowed isolation of the primary driver of decline.
+### Cohort Retention Analysis
 
+May 2025 was used as a fixed baseline cohort.
 
+Retention was measured by tracking how many May-active customers continued ordering in:
+- June (Crisis)
+- July (Post-Crisis)
 
-##### 📊 Key Findings
+This ensured consistent time-window comparison.
 
+---
 
+## 📊 Key Findings
 
-* Active customers declined by \~90% during the crisis phase.
-* AOV remained stable (\~351) across all phases.
-* Order frequency remained close to 1.0 with minimal variation.
-* Delivery time increased sharply during the crisis period.
-* Customer ratings dropped significantly during the crisis.
-* Retention dropped sharply from the May cohort into June, indicating immediate disengagement.
-* Revenue decline was driven primarily by customer volume contraction rather than reduced basket size or engagement.
+- Active customers declined by ~90% during the crisis phase.  
+- AOV remained stable (~351) across all phases.  
+- Order frequency remained approximately 1.0 with minimal variation.  
+- Delivery times increased sharply during the crisis period.  
+- Customer ratings deteriorated significantly.  
+- May cohort retention dropped sharply in June, indicating immediate disengagement.
 
+### Core Diagnosis
 
+Revenue decline was driven primarily by **customer volume contraction**, not reduced basket size or engagement intensity.
 
-##### 📈 Operational Insights
+Churn was broad-based, suggesting a systemic trust shock rather than isolated service dissatisfaction.
 
+---
 
+## 📈 Operational Insights
 
-* The demand collapse was systemic and platform-wide.
-* Retention differences across customer segments were small relative to total churn.
-* The data suggests a trust-driven demand shock rather than purely experience-based attrition.
-* Post-crisis recovery shows partial customer return but not full restoration of the pre-crisis base.
+- Demand collapse occurred immediately following the crisis trigger.  
+- Retention differences across customer segments were minor relative to total churn magnitude.  
+- Post-crisis recovery shows partial reactivation but not full restoration of the pre-crisis customer base.  
 
+---
 
+## 🚀 Strategic Recommendations
 
-##### 🚀 Strategic Recommendations
+- Prioritize reactivation of high-frequency pre-crisis customers.  
+- Strengthen SLA monitoring and delivery reliability.  
+- Rebuild platform trust through visible safety compliance measures.  
+- Allocate recovery investments toward high-value customer segments.  
+- Continuously monitor cohort-based retention during recovery.  
 
+---
 
+## 🛠 Tools & Techniques
 
-* Prioritize reactivation of high-frequency pre-crisis customers.
-* Strengthen operational reliability and SLA monitoring.
-* Rebuild trust through visible food safety compliance initiatives.
-* Focus recovery investments on high-value customer segments.
-* Monitor cohort-based retention continuously during recovery.
+- **SQL** — Data cleaning, transformation, aggregation  
+- **Python (Pandas, Matplotlib/Seaborn)** — Exploratory analysis  
+- **Tableau** — Executive recovery dashboard  
+- **Star Schema Modeling** — Structured analytical design  
+- **Cohort Analysis** — Retention measurement  
 
+---
 
-
-##### 🛠 Tools Used
-
-
-
-* **SQL** – Data cleaning, transformation, aggregation
-* **Python (Pandas, Matplotlib/Seaborn)** – Exploratory analysis
-* **Tableau** – Executive recovery dashboard
-* **Star Schema Modeling** – Structured analytical design
-
-
-
-##### 📂 Repository Structure
-
-
-
+## 📂 Repository Structure
 quickbite-express-crisis-recovery/
-
 ├─ notebooks/
-
 ├─ sql/
-
 ├─ assets/
-
 ├─ data/
-
 └─ README.md
 
 
+- SQL scripts are executed sequentially.
+- Dashboard screenshots are available in the `assets` folder.
 
-SQL scripts are executed in the order they appear.
+---
 
-Dashboards are available in the assets folder.
+## ⚠ Assumptions & Limitations
 
+- Retention is measured using the May cohort continuation into subsequent months.  
+- Revenue per order is assumed correctly recorded in fact tables.  
+- Full raw datasets are not included in this repository.  
 
+---
 
-##### ⚠ Assumptions \& Limitations
+## 🎯 Project Outcome
 
+This case study demonstrates:
 
+- Structured business problem framing  
+- Revenue driver decomposition  
+- Cohort-based retention analysis  
+- Crisis impact diagnosis  
+- Executive-level dashboard storytelling  
 
-Retention is measured using the May cohort continuation into subsequent months.
-
-Analysis assumes revenue per order is correctly recorded in the fact tables.
-
-Full raw datasets are not included in the repository.
-
-
-
-##### 🎯 Outcome
-
-
-
-This project demonstrates:
-
-
-
-* Business problem framing
-* Metric decomposition
-* Cohort-based retention analysis
-* Crisis impact diagnosis
-* Executive-level dashboard storytelling
-
-
-
-The analysis simulates a real-world recovery scenario and presents actionable insights for leadership decision-making.
-
-
-
+The project simulates a real-world recovery scenario and presents actionable insights suitable for leadership decision-making.
